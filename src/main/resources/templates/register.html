@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Registration</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/signin.css" rel="stylesheet">
+
+
+</head>
+
+<body class="text-center">
+<form class="form-signin" th:action="@{/registerSubmit}" method="post">
+    <!--<span class="oi" data-glyph="box"></span>-->
+    <!--<img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt=""-->
+    <!--width="172" height="172">-->
+    <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+    <label for="inputFirstName" class="sr-only">First Name</label>
+    <input type="text" id="inputFirstName" name="inputFirstName"
+           class="form-control" placeholder="First Name" required autofocus>
+
+    <label for="inputLastName" class="sr-only">Last Name</label>
+    <input type="text" id="inputLastName" name="inputLastName" class="form-control"
+           placeholder="Last Name" required>
+
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" name="inputEmail" class="form-control"
+           placeholder="Email address" required
+           autofocus>
+
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" name="inputPassword" class="form-control"
+           placeholder="Password" required>
+
+    <label for="inputConfirmPassword" class="sr-only">Confirm Password</label>
+    <input type="password" id="inputConfirmPassword" name="inputConfirmPassword"
+           class="form-control" placeholder="Confirm Password" required>
+    <br/>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+</form>
+</body>
+</html>
