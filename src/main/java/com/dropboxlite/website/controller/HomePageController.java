@@ -12,6 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.security.Principal;
+
 @Controller
 public class HomePageController {
 
@@ -36,5 +38,21 @@ public class HomePageController {
       }
     }
     return "login";
+  }
+
+  @GetMapping("/loginGoogle")
+  public String loginWithGoogle(Principal principal) {
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    logger.info("Principle {}", principal);
+    logger.info("Auth {}", auth);
+    throw new RuntimeException("test");
+  }
+
+  @GetMapping("/loginFacebook")
+  public String loginWithFacebook(Principal principal) {
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    logger.info("Principle {}", principal);
+    logger.info("Auth {}", auth);
+    throw new RuntimeException("test");
   }
 }
