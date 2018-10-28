@@ -33,23 +33,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    /*http.authorizeRequests()
-        .antMatchers("/", "/ping","/login*", "/register", "/registerSubmit", "/css/*", "/img/***")
-        .permitAll()
-        .anyRequest()
-        .authenticated()
-        .and()
-        .formLogin()
-        .loginProcessingUrl("/login")
-        .passwordParameter("inputPassword")
-        .usernameParameter("inputEmail")
-        .successForwardUrl("/list")
-        .successHandler(new SuccessHandler())
-        .permitAll()
-        .and()
-        .logout()
-        .permitAll();*/
-
     http
         .antMatcher("/**")
           .authorizeRequests()
@@ -59,28 +42,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
           .addFilterBefore(singleSignOnFilters(), BasicAuthenticationFilter.class)
           .authenticationProvider(new CustomAuthProvider(client))
         .formLogin()
-           .permitAll();
-
-       /* .and()
-        .authorizeRequests()
-          .antMatchers("/", "/css/*", "/img/*", "/ping", "/register*", "/login").permitAll()
-          .anyRequest().authenticated()
-          .and()
-        .formLogin()
-          .loginPage("/login")
-          .passwordParameter("inputPassword")
-          .usernameParameter("inputEmail")
-          .successForwardUrl("/list")
-          //FIXME: handle failure case on login page and show messages
-          .failureForwardUrl("/")
-          .successHandler(new SuccessHandler())
-          .permitAll()
-          .and()
-        .logout()
-          .logoutSuccessUrl("/")
-          .permitAll();*/
-
-
+           .loginPage("/login")
+              .usernameParameter("inputEmail")
+              .passwordParameter("inputPassword")
+              .successForwardUrl("/list")
+              .successHandler(new SuccessHandler())
+           .permitAll()
+         .and()
+            .logout()
+              .logoutSuccessUrl("/")
+            .permitAll();
   }
 
   @Override
@@ -88,7 +59,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       throws Exception {
     builder.authenticationProvider(new CustomAuthProvider(client));
   }
-
 
   @Autowired
   private GoogleSSOAuhtroizationCodeResourceProperties googleClient;
