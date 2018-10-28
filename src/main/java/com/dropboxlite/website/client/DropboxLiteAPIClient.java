@@ -151,6 +151,7 @@ public class DropboxLiteAPIClient {
   }
 
   public User loginUser(String email, String password) throws IOException {
+    logger.info("Logging User API Call. email: {}, password: {}", email, password);
     Response response = Request.Get(dnsName + "/login")
         .setHeader(HEADER_USER_EMAIL, email)
         .setHeader(HEADER_USER_PASSWORD, password)

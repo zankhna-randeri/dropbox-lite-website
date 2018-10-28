@@ -45,7 +45,6 @@ public class ListFilesController {
   private User getUserId() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     logger.debug("User Details: {}", authentication.getDetails());
-    logger.debug("Auth Details: {}", authentication.getDetails());
     return (User) authentication.getDetails();
   }
 

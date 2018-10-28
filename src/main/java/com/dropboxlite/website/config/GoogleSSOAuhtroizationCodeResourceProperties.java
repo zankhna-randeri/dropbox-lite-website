@@ -12,5 +12,5 @@ import org.springframework.stereotype.Component;
 @Setter
 @ToString
 @Component
-public class GoogleSSOClientProperties extends AuthorizationCodeResourceDetails {
+public class GoogleSSOAuhtroizationCodeResourceProperties extends AuthorizationCodeResourceDetails {
 }

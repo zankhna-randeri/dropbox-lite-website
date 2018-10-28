@@ -12,5 +12,5 @@ import org.springframework.stereotype.Component;
 @Setter
 @ToString
 @Component
-public class GoogleSSOResourceProperties extends ResourceServerProperties {
+public class GoogleSSOResourceServerProperties extends ResourceServerProperties {
 }
