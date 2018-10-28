@@ -37,6 +37,8 @@ public class CustomAuthProvider implements AuthenticationProvider {
       return null;
     }
     String password = credentials.toString();
+    logger.info("username: {}, password: {}", name, password);
+    logger.info("Authentication request: {}", authentication);
     User user = null;
     try {
       user = apiClient.loginUser(name, password);

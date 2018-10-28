@@ -11,6 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 
@@ -22,7 +23,7 @@ public class HomePageController {
   @Autowired
   private DropboxLiteAPIClient apiClient;
 
-  @GetMapping("/")
+  @RequestMapping("/")
   public String homePage() {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     logger.info("User authenticated? {}", auth.isAuthenticated());

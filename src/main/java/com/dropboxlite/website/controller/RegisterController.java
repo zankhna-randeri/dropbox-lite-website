@@ -49,9 +49,10 @@ public class RegisterController {
       servletResponse.addCookie(new Cookie(CookieConst.FIRST_NAME, firstName));
       redirectAttributes
           .addFlashAttribute("message", "Account created!");
-      return "redirect:/list";
     } else {
-      return "redirect:/register";
+      redirectAttributes
+          .addFlashAttribute("message", "Account already Exists!");
     }
+    return "redirect:/";
   }
 }
