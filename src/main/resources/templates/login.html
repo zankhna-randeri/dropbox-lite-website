@@ -18,13 +18,14 @@
 
 <body class="text-center">
 
-<div th:if="${message != null}" th:text="${message}"/>
-
 
 <form class="form-signin" th:action="@{/login}" method="post">
     <span class="oi" data-glyph="box"></span>
     <img class="mb-4" src="/img/logo.png" alt="" width="172" height="172">
     <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
+    <div class="float-bottom alert-success" th:if="${message != null}">
+        <div style="color:green" th:text="${message}"/>
+    </div>
     <label for="inputEmail" class="sr-only">Email address</label>
     <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required
            autofocus>

@@ -48,7 +48,7 @@ public class RegisterController {
       servletResponse.addCookie(new Cookie(CookieConst.USER_ID, String.valueOf(output.getUserId())));
       servletResponse.addCookie(new Cookie(CookieConst.FIRST_NAME, firstName));
       redirectAttributes
-          .addFlashAttribute("message", "Account created!");
+          .addFlashAttribute("message", "Account Registered! Please sign in");
     } else {
       redirectAttributes
           .addFlashAttribute("message", "Account already Exists!");
