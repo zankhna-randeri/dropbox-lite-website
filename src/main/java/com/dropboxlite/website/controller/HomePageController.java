@@ -26,6 +26,10 @@ public class HomePageController {
   @RequestMapping("/")
   public String homePage() {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    if (auth == null) {
+      return "login";
+    }
+
     logger.info("User authenticated? {}", auth.isAuthenticated());
     logger.info("Auth Details {}", auth);
 

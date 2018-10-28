@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     http
         .authorizeRequests()
-          .antMatchers("/", "/css/*", "/img/*", "/ping", "/register*").permitAll()
+          .antMatchers("/", "/css/*", "/img/*", "/ping", "/register*", "/login").permitAll()
           .anyRequest().authenticated()
           .and()
         .formLogin()
@@ -46,6 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
           .passwordParameter("inputPassword")
           .usernameParameter("inputEmail")
           .successForwardUrl("/list")
+          .failureForwardUrl("/")
           .successHandler(new SuccessHandler())
           .permitAll()
           .and()
