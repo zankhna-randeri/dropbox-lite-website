@@ -36,7 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     http
         .antMatcher("/**")
           .authorizeRequests()
-        .antMatchers("/", "/css/*", "/img/*", "/ping", "/register*", "/login*").permitAll()
+        .antMatchers("/", "/css/*", "/img/*", "/ping", "/register*", "/login",
+            "/registerSubmit", "/loginGoogle").permitAll()
           .anyRequest().authenticated()
         .and()
           .addFilterBefore(singleSignOnFilters(), BasicAuthenticationFilter.class)
@@ -67,18 +68,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   private GoogleSSOResourceServerProperties googleResource;
 
   @Autowired
-  private FacebookSSOAuhtroizationCodeResourceProperties facebookClient;
-
-  @Autowired
-  private FacebookSSOResourceServerProperties facebookResource;
-
-  @Autowired
   private OAuth2ClientContext oauth2ClientContext;
 
   private Filter singleSignOnFilters() {
     CompositeFilter filter = new CompositeFilter();
     List<Filter> filters = new ArrayList<>();
-    filters.add(ssoFilter(facebookClient, facebookResource, oauth2ClientContext, "/loginFacebook"));
     filters.add(ssoFilter(googleClient, googleResource, oauth2ClientContext, "/loginGoogle"));
     filter.setFilters(filters);
     return filter;
