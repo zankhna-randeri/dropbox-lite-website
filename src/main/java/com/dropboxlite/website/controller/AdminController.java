@@ -30,6 +30,11 @@ public class AdminController {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     User user = (User) authentication.getDetails();
     logger.info("Received Admin List files request. User {}", user.getUserId());
+
+    if (!user.isAdminUser()) {
+      return "redirect:/list";
+    }
+
     ListFileOutput output = apiClient.listAllFiles();
     model.addAttribute("firstName", user.getFirstName());
     if (output.getFiles().size() > 0) {
@@ -38,6 +43,7 @@ public class AdminController {
       model.addAttribute("message", "No files available.");
     }
     return "adminHome";
+
   }
 
   @PostMapping("/deleteAdminFile")
