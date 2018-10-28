@@ -26,6 +26,11 @@ public class HomePageController {
   @Autowired
   private DropboxLiteAPIClient apiClient;
 
+  @RequestMapping("/login")
+  public String loginFailure() {
+    return "login";
+  }
+
   @RequestMapping("/")
   public String homePage() {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
