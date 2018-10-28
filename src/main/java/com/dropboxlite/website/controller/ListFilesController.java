@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 @Controller
 public class ListFilesController {
@@ -28,6 +29,10 @@ public class ListFilesController {
     ListFileOutput output = client.listFiles(user.getUserId());
     model.addAttribute("firstName", user.getFirstName());
     if (output.getFiles().size() > 0) {
+      output.getFiles()
+          .parallelStream()
+          .forEach(e -> e.setReadableFileSize(getReadableFileSize(e.getFileSize())));
+
       model.addAttribute("file", output.getFiles());
       model.addAttribute("message", "Your Files");
     } else {
@@ -40,6 +45,14 @@ public class ListFilesController {
   private User getUserId() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     logger.debug("User Details: {}", authentication.getDetails());
+    logger.debug("Auth Details: {}", authentication.getDetails());
     return (User) authentication.getDetails();
+  }
+
+  private String getReadableFileSize(long size) {
+    final String[] units = new String[]{"B", "KB", "MB"};
+    int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
+    return new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroups)) + " "
+        + units[digitGroups];
   }
 }

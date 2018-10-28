@@ -14,4 +14,5 @@ public class FileInfo {
   private String description;
   private long fileSize;
   private String userFirstName;
+  private String readableFileSize;
 }
