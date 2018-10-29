@@ -1,4 +1,4 @@
-# Dropbox Lite
+# Dropbox Lite - Frontend
 
 Project 1 : Dropbox-Lite  
 University Name: http://www.sjsu.edu/  
