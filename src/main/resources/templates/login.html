@@ -14,6 +14,9 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/signin.css" rel="stylesheet">
+    <link href="/css/bootstrap-social.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+
 </head>
 
 <body class="text-center">
@@ -34,7 +37,11 @@
            required>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     <a class="btn btn-lg btn-primary btn-block" href="/register">Register</a>
-    <a class="btn btn-lg btn-primary btn-block" href="/loginGoogle">Login with Google</a>
+
+    <a class="btn btn-lg btn-block btn-social btn-google" href="/loginGoogle">
+        Sign in with Google
+    </a>
+    <!--<a class="btn btn-lg btn-primary btn-block" href="/loginGoogle">Login with Google</a>-->
 
     <br/>
     <div class="float-bottom alert-danger" th:if="${param.error}">
