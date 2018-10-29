@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatcher("/**")
           .authorizeRequests()
         .antMatchers("/", "/css/*", "/img/*", "/ping", "/register*", "/login",
-            "/registerSubmit", "/loginGoogle").permitAll()
+            "/registerSubmit", "/loginGoogle", "/js/*").permitAll()
           .anyRequest().authenticated()
         .and()
           .addFilterBefore(singleSignOnFilters(), BasicAuthenticationFilter.class)

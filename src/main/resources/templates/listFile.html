@@ -9,6 +9,7 @@
     <link href="/css/bootstrap.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="/css/table-format.css" rel="stylesheet">
+    <script src="/js/validator.js"></script>
 </head>
 <body style="padding:10px;   background-color: #f5f5f5;">
 
@@ -24,13 +25,13 @@
 <br/>
 <div>
     <form method="post" enctype="multipart/form-data" th:action="@{/upload}">
-        <input type="file" name="file" required/>
+        <input id="file_upload" type="file" name="file" required/>
         <br/>
         <br/>
         <input type="text" name="description" required class="form-control"
                placeholder="File Description"/>
         <br/>
-        <button type="submit" class="btn btn-primary">Upload</button>
+        <button type="submit" onClick="return validate()" class="btn btn-primary">Upload</button>
     </form>
 </div>
 <br/>
