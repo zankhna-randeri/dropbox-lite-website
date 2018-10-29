@@ -29,8 +29,13 @@ public class DeleteFileController {
     User user = getUserId();
     logger.info("Received Delete file request. User {}", user.getUserId());
     DeleteFileOutput output = client.deleteFile(user.getUserId(), fileName);
-    redirectAttributes
-        .addFlashAttribute("message", String.format("File Deleted: %s", output.getStatus()));
+
+    redirectAttributes.
+        addFlashAttribute("delete_message", String.format("File Deleted: %s", output.getStatus()));
+    redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+
+//    redirectAttributes.addFlashAttribute("message", String.format("File Deleted: %s", output.getStatus()));
+
     return "redirect:/list";
   }
 

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 @Controller
 public class AdminController {
@@ -38,6 +39,10 @@ public class AdminController {
     ListFileOutput output = apiClient.listAllFiles();
     model.addAttribute("firstName", user.getFirstName());
     if (output.getFiles().size() > 0) {
+      output.getFiles()
+          .parallelStream()
+          .forEach(e -> e.setReadableFileSize(getReadableFileSize(e.getFileSize())));
+
       model.addAttribute("file", output.getFiles());
     } else {
       model.addAttribute("message", "No files available.");
@@ -56,9 +61,18 @@ public class AdminController {
     logger.info("Received Admin Delete files request. User {}", user.getUserId());
 
     DeleteFileOutput output = apiClient.deleteFile(userId, fileName);
-    redirectAttributes
-        .addFlashAttribute("message", "File Deleted");
+    redirectAttributes.
+        addFlashAttribute("delete_message", "File Deleted Successfully.");
+    redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+
     return "redirect:/admin";
 
+  }
+
+  private String getReadableFileSize(long size) {
+    final String[] units = new String[]{"B", "KB", "MB"};
+    int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
+    return new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroups)) + " "
+        + units[digitGroups];
   }
 }
