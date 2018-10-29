@@ -13,38 +13,39 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/signin.css" rel="stylesheet">
-
-
+    <script src="/js/validator.js"></script>
 </head>
 
 <body class="text-center">
 <form class="form-signin" th:action="@{/registerSubmit}" method="post">
-    <!--<span class="oi" data-glyph="box"></span>-->
-    <!--<img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt=""-->
-    <!--width="172" height="172">-->
+    <span class="oi" data-glyph="box"></span>
+    <img class="mb-4" src="/img/logo.png" alt="" width="172" height="172">
     <h1 class="h3 mb-3 font-weight-normal">Register</h1>
     <label for="inputFirstName" class="sr-only">First Name</label>
     <input type="text" id="inputFirstName" name="inputFirstName"
-           class="form-control" placeholder="First Name" required autofocus>
+           class="form-control" placeholder="First Name" required autofocus
+           maxlength="20" minlength="5">
 
     <label for="inputLastName" class="sr-only">Last Name</label>
     <input type="text" id="inputLastName" name="inputLastName" class="form-control"
-           placeholder="Last Name" required>
+           placeholder="Last Name" required maxlength="20" minlength="5">
 
-    <label for="inputEmail" class="sr-only">Email address</label>
+    <label for="inputEmail" class="sr-only" >Email address</label>
     <input type="email" id="inputEmail" name="inputEmail" class="form-control"
            placeholder="Email address" required
            autofocus>
 
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" name="inputPassword" class="form-control"
-           placeholder="Password" required>
+           placeholder="Password" required minlength="5" maxlength="10">
 
     <label for="inputConfirmPassword" class="sr-only">Confirm Password</label>
     <input type="password" id="inputConfirmPassword" name="inputConfirmPassword"
-           class="form-control" placeholder="Confirm Password" required>
+           class="form-control" placeholder="Confirm Password" required
+           minlength="5" maxlength="10">
     <br/>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    <button class="btn btn-lg btn-primary btn-block"  onClick="return validateLoginform()" type="submit">Register
+    </button>
 </form>
 </body>
 </html>
